@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include <stdio.h>
+#include "cub3d.h"
 
 static int	check_line(char line, int *p)
 {
@@ -25,28 +24,28 @@ static int	check_line(char line, int *p)
 	return (1);
 }
 
-void		parse_res(char *line, t_parse_info *pi, t_game_info *gi)
+void		parse_res(char *line, t_cub *cub)
 {
-	pi->r++;
+	cub->r++;
 	line++;
 	while(ft_isspace(*line))
 		line++;
-	if (!check_line(*line, &(gi->resolution[0])))
+	if (!check_line(*line, &(cub->resolution[0])))
 		return ;
-	gi->resolution[0] = ft_atoi(line);
-	if (gi->resolution[0] < 1)
-		gi->resolution[0] = -2;
+	cub->resolution[0] = ft_atoi(line);
+	if (cub->resolution[0] < 1)
+		cub->resolution[0] = -2;
 	while (ft_isdigit(*line))
 		line++;
 	while (ft_isspace(*line))
 		line++;
-	if (!check_line(*line, &(gi->resolution[1])))
+	if (!check_line(*line, &(cub->resolution[1])))
 		return ;
-	gi->resolution[1] = ft_atoi(line);
-	if (gi->resolution[1] < 1)
-		gi->resolution[1] = -2;
+	cub->resolution[1] = ft_atoi(line);
+	if (cub->resolution[1] < 1)
+		cub->resolution[1] = -2;
 	while (ft_isdigit(*line))
 		line++;
 	if (*line)
-		gi->resolution[1] = -4;
+		cub->resolution[1] = -4;
 }

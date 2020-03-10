@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "cub3d.h"
 
 int		is_identifier(char *str)
 {
@@ -30,14 +30,14 @@ int		is_identifier(char *str)
 	return (0);
 }
 
-void	parse_line(char *str, t_parse_info *pi, t_game_info *gi)
+void	parse_line(char *str, t_cub *cub)
 {
 	if (!str[1] || str[1] == ' ' || str[1] == '\t')
 	{
 		if (str[0] == 'R')
-			parse_res(str, pi, gi);
+			parse_res(str, cub);
 		if (str[0] == 'S')
-			parse_sprite(str, pi, gi);
+			parse_sprite(str, cub);
 		if (str[0] == 'F')
 			parse_f_color(str, pi, gi);
 		if (str[0] == 'C')
@@ -53,7 +53,7 @@ void	parse_line(char *str, t_parse_info *pi, t_game_info *gi)
 		parse_west(str, pi, gi);
 }
 
-void get_info(char *filename, t_parse_info *pi, t_game_info *gi)
+void get_info(char *filename, t_cub *cub)
 {
 	int fd;
 	int gnl;
@@ -65,7 +65,7 @@ void get_info(char *filename, t_parse_info *pi, t_game_info *gi)
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
 		if (is_identifier(line))
-			parse_line(line, pi, gi);
+			parse_line(line, cub);
 		free(line);
 		if (!gnl)
 			break;
@@ -73,28 +73,27 @@ void get_info(char *filename, t_parse_info *pi, t_game_info *gi)
 	close(fd);
 }
 
-int		parse_cub_file(char *filename, t_parse_info *pi, t_game_info *gi)
-{
-	check_cub_file(filename);
-	check_lines(filename);
-	check_map(filename, pi);
-	get_info(filename, pi, gi);
-	check_info(pi, gi);
-	parse_map(filename, gi);
+int		parse_cub_file(t_cub *cub)
+{	
+	check_cub_file(cub->cub_file_path);
+	check_lines(cub->cub_file_path);
+	check_map(cub->cub_file_path, cub);
+	get_info(cub->cub_file_path, cub);
+	check_info(cub);
+	parse_map(cub->cub_file_path, cub);
 	return (0);
 }
 
 int		main(int ac, char **av)
 {
-	t_game_info		gi;
-	t_parse_info	pi;
+	t_cub cub;
 	int i = 0;
 
-	init_game_info(&gi);
-	init_parse_info(&pi);
-	if (ac != 2)
+	if (ac < 2 || ac > 3)
 		return (-1);
-	parse_cub_file(av[1], &pi, &gi);
+	cub.cub_file_path = av[1];
+	init_cub(&cub);
+	parse_cub_file(&cub);
 	printf("resolution = %d, %d\n", gi.resolution[0], gi.resolution[1]);
 	printf("ceil = r[%d], g[%d], b[%d]\n", gi.c_color[0], gi.c_color[1], gi.c_color[2]);
 	printf("floor = r[%d], g[%d], b[%d]\n", gi.f_color[0], gi.f_color[1], gi.f_color[2]);

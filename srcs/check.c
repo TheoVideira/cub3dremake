@@ -54,12 +54,12 @@ void check_lines(char *filename)
 	close(fd);
 }
 
-void check_map(char *filename, t_parse_info *pi)
+void check_map(char *filename, t_cub *cub)
 {
-	check_map_1(filename, pi);
-	if (pi->map == 0)
+	check_map_1(filename, cub);
+	if (cub->no_map == 0)
 		ft_error("Map error : No map found");
-	if (pi->map != 1)
+	if (cub->no_map != 1)
 		ft_error("Map error : There should be one map on the file\
 		\nHint : remove empty lines in its declaration.\n");
 	check_map_2(filename);

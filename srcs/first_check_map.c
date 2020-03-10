@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "cub3d.h"
 
 static void	ft_emergency(int fd, char **line)
 {
@@ -18,7 +18,7 @@ static void	ft_emergency(int fd, char **line)
 	close(fd);
 }
 
-void 		check_map_1(char *filename, t_parse_info *pi)
+void 		check_map_1(char *filename, t_cub *cub)
 {
 	int		fd;
 	int		gnl;
@@ -33,7 +33,7 @@ void 		check_map_1(char *filename, t_parse_info *pi)
 	{
 		if ((*line >= '0' && *line <= '2') && !inmap)
 		{
-			pi->map++;
+			cub->no_map++;
 			inmap = 1;
 		}
 		if (!(*line >= '0' && *line <= '2'))

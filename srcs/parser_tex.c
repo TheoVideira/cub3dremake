@@ -12,47 +12,47 @@
 
 #include "parser.h"
 
-void parse_north(char *line, t_parse_info *pi, t_game_info *gi)
+void parse_north(char *line, t_cub *cub)
 {
-    pi->no++;
+    cub->no++;
     line += 2;
     while (ft_isspace(*line))
         line++;
-    gi->texture.path[0] = ft_strdup(line);
+    cub->texture.path[0] = ft_strdup(line);
 }
 
-void parse_south(char *line, t_parse_info *pi, t_game_info *gi)
+void parse_south(char *line, t_cub *cub)
 {
-    pi->so++;
+    cub->so++;
     line += 2;
     while (ft_isspace(*line))
         line++;
-    gi->texture.path[1] = ft_strdup(line);
+    cub->texture.path[1] = ft_strdup(line);
 }
 
-void parse_east(char *line, t_parse_info *pi, t_game_info *gi)
+void parse_east(char *line, t_cub *cub)
 {
-    pi->ea++;
+    cub->ea++;
     line += 2;
     while (ft_isspace(*line))
         line++;
-    gi->texture.path[2] = ft_strdup(line);
+    cub->texture.path[2] = ft_strdup(line);
 }
 
-void parse_west(char *line, t_parse_info *pi, t_game_info *gi)
+void parse_west(char *line, t_cub *cub)
 {
-    pi->we++;
+    cub->we++;
     line += 2;
     while (ft_isspace(*line))
         line++;
-    gi->texture.path[3] = ft_strdup(line);
+    cub->texture.path[3] = ft_strdup(line);
 }
 
-void parse_sprite(char *line, t_parse_info *pi, t_game_info *gi)
+void parse_sprite(char *line, t_cub *cub)
 {
-    pi->s++;
+    cub->s++;
     line++;
     while (ft_isspace(*line))
         line++;
-    gi->texture.path[4] = ft_strdup(line);
+    cub->texture.path[4] = ft_strdup(line);
 }
