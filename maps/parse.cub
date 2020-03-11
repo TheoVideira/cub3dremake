@@ -3,7 +3,7 @@
 F 255,255,0
 C 0,111,111
 
-R     640 480
+R     1920 1080
 
 NO textures/stone.xpm
 
@@ -25,8 +25,6 @@ WE textures/red_wool.xpm
 
 
 S textures/mario.xpm
-
-
 
 11111111111111111111
 111110000000001110001

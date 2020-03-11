@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 08:46:43 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 03:36:38 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 12:02:24 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ typedef struct	s_cub
 	void		*window;
 	int			*screen;
 	int			*img;
+	int			bmp;
 	char		*cub_file_path;
 	int			width;
 	int			height;
@@ -186,7 +187,8 @@ typedef struct	s_cub
 	char		*path[5];
 	void		*ptr[5];
 	int			*data[5];
-	int			size[5];
+	int			tex_w[5];
+	int			tex_h[5];
 	double		angle;
 	double		pos_x;
 	double		pos_y;
@@ -207,6 +209,9 @@ typedef struct	s_cub
 	int			f;
 	int			c;
 	int			no_map;
+
+	double		plane_x;
+	double		plane_y;
 }				t_cub;
 
 void			init_cub(t_cub *cub);
@@ -218,7 +223,6 @@ int				key_release(int key, t_cub *cub);
 void			movement_forward_backward(t_cub *cub);
 void			movement_left_right_rotate(t_cub *cub);
 void			render_wall(t_cub *cub);
-void			create_background(t_cub *cub);
 void			get_resolution(t_cub *cub);
 void			get_ceil(t_cub *cub);
 void			get_floor(t_cub *cub);
@@ -259,7 +263,7 @@ void			init_player_values(char c, t_cub *cub, int x, int y);
 void			valid_case_player_pos_check(t_cub *cub);
 int				check_top_bottom(t_cub *cub, int x, int y);
 int				check_left_right(t_cub *cub, int x, int y);
-int				parse_cub_file(t_cub *cub);
+int				parse_cub_file(t_cub *cub, int ac, char **av);
 int				can_move(char c);
 void			ft_error(char *error);
 void			ft_error_no(int err);
@@ -267,5 +271,8 @@ void			ft_error_line(char *error, int n);
 void			ft_error_free(char *error, t_cub *cub);
 void			ft_error_no_free(int err, t_cub *cub);
 void			get_sprite(t_cub *cub);
+void			parse_args(int ac, char **av, t_cub *cub);
+void			render(t_cub *cub);
+
 
 #endif

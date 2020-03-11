@@ -10,9 +10,9 @@ INCLUDES		= $(addprefix -I, $(INCLUDES_FOLDER))
 NAME			= cub3D
 
 SRCS_DIR		= srcs
-SRCS_FILES		= check.c check_c dda.c first_check_map.c init_struct.c main.c parser_col.c parser_res.c render.c\
-				  check_info.c closed_map_utils.c error.c get_map_utils.c key.c parser.c parser_map.c parser_tex.c textures.c\
-				  render_sprite.c
+SRCS_FILES		= check.c check_texture.c error.c get_map_utils.c init_struct.c key.c parser.c parser_col.c parser_res.c render.c \
+				  check_info.c closed_map_utils.c first_check_map.c get_sprite.c init_texture.c main.c parser_args.c parser_map.c parser_tex.c \
+				  render_wall.c
 SRCS			= $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS_DIR		= objs

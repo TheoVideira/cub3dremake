@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:22:39 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 03:58:06 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 10:10:03 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ void get_info(char *filename, t_cub *cub)
 	close(fd);
 }
 
-int		parse_cub_file(t_cub *cub)
-{	
+int		parse_cub_file(t_cub *cub, int ac, char **av)
+{
+	init_cub(cub);
+	parse_args(ac, av, cub);
 	check_cub_file(cub->cub_file_path);
 	check_lines(cub->cub_file_path);
 	check_map(cub->cub_file_path, cub);
@@ -85,17 +87,14 @@ int		parse_cub_file(t_cub *cub)
 	return (0);
 }
 
+/*
 #include <stdio.h>
 
 int		test(int ac, char **av)
 {
 	t_cub cub;
 
-	if (ac < 2 || ac > 3)
-		return (-1);
-	cub.cub_file_path = av[1];
-	init_cub(&cub);
-	parse_cub_file(&cub);
+	parse_cub_file(&cub, ac, av);
 	printf("resolution = %d, %d\n", cub.width, cub.height);
 	printf("ceil = r[%d], g[%d], b[%d]\n", cub.c_color[0], cub.c_color[1], cub.c_color[2]);
 	printf("floor = r[%d], g[%d], b[%d]\n", cub.f_color[0], cub.f_color[1], cub.f_color[2]);
@@ -114,8 +113,11 @@ int		test(int ac, char **av)
 		printf("Sprite no %d, x = %d, y = %d\n", i, cub.sp_x[i], cub.sp_y[i]);
 	return (1);
 }
+
 int		main(int ac, char **av)
 {
+	printf("%d\n", (int)0.99999999);
 	test(ac, av);
 	return (0);
 }
+*/
