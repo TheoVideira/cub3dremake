@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 08:46:43 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 01:18:42 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 03:36:38 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,119 +169,103 @@
 
 typedef struct	s_cub
 {
-	/*
-	*** MLX VARS
-	*/
-	void	*mlx_ptr;
-	void	*window;
-	int		*screen;
-	int		*img;
-	/*
-	*** GAME INFO
-	*/
-	char	*cub_file_path;
-	int		width;
-	int		height;
-	int		f_color[3];
-	int		c_color[3];
-	char	**map;
-	/*
-	*** TEXTURES
-	*/
-	char	*path[5];
-	void	*ptr[5];
-	int		*data[5];
-	int		size[5];
-	/*		
-	*** PLAYER
-	*/
-	double	angle;
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	/*
-	*** INPUTS
-	*/
-	int		key_forward;
-	int		key_backward;
-	int		key_left;
-	int		key_right;
-	int		key_rotate_left;
-	int		key_rotate_right;
-	/*
-	*** PARSING INFO
-	*/
-	int		r;
-	int		no;
-	int		so;
-	int		ea;
-	int		we;
-	int		s;
-	int		f;
-	int		c;
-	int		no_map;
+	void		*mlx_ptr;
+	void		*window;
+	int			*screen;
+	int			*img;
+	char		*cub_file_path;
+	int			width;
+	int			height;
+	int			f_color[3];
+	int			c_color[3];
+	char		**map;
+	int			n_sp;
+	int			*sp_x;
+	int			*sp_y;
+	int			*sp_dist;
+	char		*path[5];
+	void		*ptr[5];
+	int			*data[5];
+	int			size[5];
+	double		angle;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	int			key_forward;
+	int			key_backward;
+	int			key_left;
+	int			key_right;
+	int			key_rotate_left;
+	int			key_rotate_right;
+	int			r;
+	int			no;
+	int			so;
+	int			ea;
+	int			we;
+	int			s;
+	int			f;
+	int			c;
+	int			no_map;
 }				t_cub;
 
-void	init_cub(t_cub *cub);
-int		init_textures(t_cub *cub, int i);
-int		quit_window(t_cub *cub);
-void	init_input(t_cub *cub);
-int     key_press(int key, t_cub *cub);
-int     key_release(int key, t_cub *cub);
-void	movement_forward_backward(t_cub *cub);
-void	movement_left_right_rotate(t_cub *cub);
-void	render_wall(t_cub *cub);
-void	create_background(t_cub *cub);
-/*
-*** PARSER FUNCTIONS
-*/
-void	get_resolution(t_cub *cub);
-void	get_ceil(t_cub *cub);
-void	get_floor(t_cub *cub);
-void	get_tex_no(t_cub *cub);
-void	init_game_info(t_cub *cub);
-void	parse_north(char *line, t_cub *cub);
-void    parse_south(char *line, t_cub *cub);
-void    parse_east(char *line, t_cub *cub);
-void    parse_west(char *line, t_cub *cub);
-void    parse_sprite(char *line, t_cub *cub);
-void    parse_res(char *line, t_cub *cub);
-void    parse_f_color(char *line, t_cub *cub);
-void    parse_c_color(char *line, t_cub *cub);
-void    check_cub_file(char *filename);
-void    check_lines(char *filename);
-int     is_identifier(char *str);
-void	init_parse_info(t_cub *cub);
-void	check_map_1(char *filename, t_cub *cub);
-void	check_map(char *filename, t_cub *cub);
-void	check_map_2(char *filename);
-void	check_resolution(t_cub *cub);
-void	check_f_color(t_cub *cub);
-void    check_c_color(t_cub *cub);
-void	check_no_tex(t_cub *cub);
-void	check_so_tex(t_cub *cub);
-void	check_ea_tex(t_cub *cub);
-void	check_we_tex(t_cub *cub);
-void	check_sp_tex(t_cub *cub);
-void	check_info(t_cub *cub);
-int     check_format(char *filename, char *format);
-void	get_map_heigth(char *filename, t_cub *cub);
-void	parse_map(char *filename, t_cub *cub);
-void	get_map(char *filename, t_cub *cub);
-void	create_line_map(char *line, t_cub *cub, int n);
-int		is_valid_case(char c);
-int		is_pos_case(char c);
-void	init_player_values(char c, t_cub *cub, int x, int y);
-void	valid_case_player_pos_check(t_cub *cub);
-int     check_top_bottom(t_cub *cub, int x, int y);
-int     check_left_right(t_cub *cub, int x, int y);
-int		parse_cub_file(t_cub *cub);
-int		can_move(char c);
-void	ft_error(char *error);
-void	ft_error_no(int err);
-void	ft_error_line(char *error, int n);
-void	ft_error_free(char *error, t_cub *cub);
-void	ft_error_no_free(int err, t_cub *cub);
+void			init_cub(t_cub *cub);
+int				init_textures(t_cub *cub, int i);
+int				quit_window(t_cub *cub);
+void			init_input(t_cub *cub);
+int				key_press(int key, t_cub *cub);
+int				key_release(int key, t_cub *cub);
+void			movement_forward_backward(t_cub *cub);
+void			movement_left_right_rotate(t_cub *cub);
+void			render_wall(t_cub *cub);
+void			create_background(t_cub *cub);
+void			get_resolution(t_cub *cub);
+void			get_ceil(t_cub *cub);
+void			get_floor(t_cub *cub);
+void			get_tex_no(t_cub *cub);
+void			init_game_info(t_cub *cub);
+void			parse_north(char *line, t_cub *cub);
+void			parse_south(char *line, t_cub *cub);
+void			parse_east(char *line, t_cub *cub);
+void			parse_west(char *line, t_cub *cub);
+void			parse_sprite(char *line, t_cub *cub);
+void			parse_res(char *line, t_cub *cub);
+void			parse_f_color(char *line, t_cub *cub);
+void			parse_c_color(char *line, t_cub *cub);
+void			check_cub_file(char *filename);
+void			check_lines(char *filename);
+int				is_identifier(char *str);
+void			init_parse_info(t_cub *cub);
+void			check_map_1(char *filename, t_cub *cub);
+void			check_map(char *filename, t_cub *cub);
+void			check_map_2(char *filename);
+void			check_resolution(t_cub *cub);
+void			check_f_color(t_cub *cub);
+void			check_c_color(t_cub *cub);
+void			check_no_tex(t_cub *cub);
+void			check_so_tex(t_cub *cub);
+void			check_ea_tex(t_cub *cub);
+void			check_we_tex(t_cub *cub);
+void			check_sp_tex(t_cub *cub);
+void			check_info(t_cub *cub);
+int				check_format(char *filename, char *format);
+void			get_map_heigth(char *filename, t_cub *cub);
+void			parse_map(char *filename, t_cub *cub);
+void			get_map(char *filename, t_cub *cub);
+void			create_line_map(char *line, t_cub *cub, int n);
+int				is_valid_case(char c);
+int				is_pos_case(char c);
+void			init_player_values(char c, t_cub *cub, int x, int y);
+void			valid_case_player_pos_check(t_cub *cub);
+int				check_top_bottom(t_cub *cub, int x, int y);
+int				check_left_right(t_cub *cub, int x, int y);
+int				parse_cub_file(t_cub *cub);
+int				can_move(char c);
+void			ft_error(char *error);
+void			ft_error_no(int err);
+void			ft_error_line(char *error, int n);
+void			ft_error_free(char *error, t_cub *cub);
+void			ft_error_no_free(int err, t_cub *cub);
+void			get_sprite(t_cub *cub);
 
 #endif

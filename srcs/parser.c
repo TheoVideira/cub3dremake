@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:22:39 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 01:19:14 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 03:58:06 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ int		parse_cub_file(t_cub *cub)
 	get_info(cub->cub_file_path, cub);
 	check_info(cub);
 	parse_map(cub->cub_file_path, cub);
+	get_sprite(cub);
 	return (0);
 }
 
 #include <stdio.h>
 
-int		main(int ac, char **av)
+int		test(int ac, char **av)
 {
 	t_cub cub;
-	int i = 0;
 
 	if (ac < 2 || ac > 3)
 		return (-1);
@@ -105,10 +105,17 @@ int		main(int ac, char **av)
 	printf("path[3] = %s\n", cub.path[3]);
 	printf("path[4] = %s\n", cub.path[4]);
 	printf("\nMap :\n");
-	while (cub.map[i])
-		printf("%s\n", cub.map[i++]);
+	for (int i = 0; cub.map[i]; i++)
+		printf("%s\n", cub.map[i]);
 	printf("\nPlayer angle = %f\n", cub.angle);
 	printf("Player pos x = %f\n", cub.pos_x);
 	printf("Player pos y = %f\n", cub.pos_y);
+	for (int i = 0; i < cub.n_sp; i++)
+		printf("Sprite no %d, x = %d, y = %d\n", i, cub.sp_x[i], cub.sp_y[i]);
+	return (1);
+}
+int		main(int ac, char **av)
+{
+	test(ac, av);
 	return (0);
 }
