@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:33 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/02 14:36:34 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 01:19:14 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,22 @@ void		parse_res(char *line, t_cub *cub)
 	line++;
 	while(ft_isspace(*line))
 		line++;
-	if (!check_line(*line, &(cub->resolution[0])))
+	if (!check_line(*line, &(cub->width)))
 		return ;
-	cub->resolution[0] = ft_atoi(line);
-	if (cub->resolution[0] < 1)
-		cub->resolution[0] = -2;
+	cub->width = ft_atoi(line);
+	if (cub->width < 1)
+		cub->width = -2;
 	while (ft_isdigit(*line))
 		line++;
 	while (ft_isspace(*line))
 		line++;
-	if (!check_line(*line, &(cub->resolution[1])))
+	if (!check_line(*line, &(cub->height)))
 		return ;
-	cub->resolution[1] = ft_atoi(line);
-	if (cub->resolution[1] < 1)
-		cub->resolution[1] = -2;
+	cub->height = ft_atoi(line);
+	if (cub->height < 1)
+		cub->height = -2;
 	while (ft_isdigit(*line))
 		line++;
 	if (*line)
-		cub->resolution[1] = -4;
+		cub->height = -4;
 }

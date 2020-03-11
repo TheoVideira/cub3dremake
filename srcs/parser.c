@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:22:39 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/09 16:19:19 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 01:19:14 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ void	parse_line(char *str, t_cub *cub)
 		if (str[0] == 'S')
 			parse_sprite(str, cub);
 		if (str[0] == 'F')
-			parse_f_color(str, pi, gi);
+			parse_f_color(str, cub);
 		if (str[0] == 'C')
-			parse_c_color(str, pi, gi);
+			parse_c_color(str, cub);
 	}
 	if (str[0] == 'N' && str[1] == 'O')
-		parse_north(str, pi, gi);
+		parse_north(str, cub);
 	if (str[0] == 'S' && str[1] == 'O')
-		parse_south(str, pi, gi);
+		parse_south(str, cub);
 	if (str[0] == 'E' && str[1] == 'A')
-		parse_east(str, pi, gi);
+		parse_east(str, cub);
 	if (str[0] == 'W' && str[1] == 'E')
-		parse_west(str, pi, gi);
+		parse_west(str, cub);
 }
 
 void get_info(char *filename, t_cub *cub)
@@ -84,6 +84,8 @@ int		parse_cub_file(t_cub *cub)
 	return (0);
 }
 
+#include <stdio.h>
+
 int		main(int ac, char **av)
 {
 	t_cub cub;
@@ -94,19 +96,19 @@ int		main(int ac, char **av)
 	cub.cub_file_path = av[1];
 	init_cub(&cub);
 	parse_cub_file(&cub);
-	printf("resolution = %d, %d\n", gi.resolution[0], gi.resolution[1]);
-	printf("ceil = r[%d], g[%d], b[%d]\n", gi.c_color[0], gi.c_color[1], gi.c_color[2]);
-	printf("floor = r[%d], g[%d], b[%d]\n", gi.f_color[0], gi.f_color[1], gi.f_color[2]);
-	printf("texture.path[0] = %s\n", gi.texture.path[0]);
-	printf("texture.path[1] = %s\n", gi.texture.path[1]);
-	printf("texture.path[2] = %s\n", gi.texture.path[2]);
-	printf("texture.path[3] = %s\n", gi.texture.path[3]);
-	printf("texture.path[4] = %s\n", gi.texture.path[4]);
+	printf("resolution = %d, %d\n", cub.width, cub.height);
+	printf("ceil = r[%d], g[%d], b[%d]\n", cub.c_color[0], cub.c_color[1], cub.c_color[2]);
+	printf("floor = r[%d], g[%d], b[%d]\n", cub.f_color[0], cub.f_color[1], cub.f_color[2]);
+	printf("path[0] = %s\n", cub.path[0]);
+	printf("path[1] = %s\n", cub.path[1]);
+	printf("path[2] = %s\n", cub.path[2]);
+	printf("path[3] = %s\n", cub.path[3]);
+	printf("path[4] = %s\n", cub.path[4]);
 	printf("\nMap :\n");
-	while (gi.map[i])
-		printf("%s\n", gi.map[i++]);
-	printf("\nPlayer angle = %f\n", gi.player.angle);
-	printf("Player pos x = %f\n", gi.player.pos_x);
-	printf("Player pos y = %f\n", gi.player.pos_y);
+	while (cub.map[i])
+		printf("%s\n", cub.map[i++]);
+	printf("\nPlayer angle = %f\n", cub.angle);
+	printf("Player pos x = %f\n", cub.pos_x);
+	printf("Player pos y = %f\n", cub.pos_y);
 	return (0);
 }

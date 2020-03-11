@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:48 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/06 00:26:18 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 01:19:14 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ void	init_parse_info(t_cub *cub)
 
 void	init_game_info(t_cub *cub)
 {
-	cub->resolution[0] = -1;
-	cub->resolution[1] = -1;
+	cub->width = -1;
+	cub->height = -1;
 	cub->f_color[0] = -1;
 	cub->f_color[1] = -1;
 	cub->f_color[2] = -1;
 	cub->c_color[0] = -1;
 	cub->c_color[1] = -1;
 	cub->c_color[2] = -1;
-	cub->texture.path[0] = NULL;
-	cub->texture.path[1] = NULL;
-	cub->texture.path[2] = NULL;
-	cub->texture.path[3] = NULL;
-	cub->texture.path[4] = NULL;
-	cub->player.angle = -1.0;
-	cub->player.pos_x = -1.0;
-	cub->player.pos_y = -1.0;
+	cub->path[0] = NULL;
+	cub->path[1] = NULL;
+	cub->path[2] = NULL;
+	cub->path[3] = NULL;
+	cub->path[4] = NULL;
+	cub->angle = -1.0;
+	cub->pos_x = -1.0;
+	cub->pos_y = -1.0;
 }
 
 void	init_input(t_cub *cub)

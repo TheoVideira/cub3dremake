@@ -6,13 +6,13 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:21 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/03 22:09:11 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 01:00:02 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "cub3d.h"
 
-void	get_map_heigth(char *filename, t_game_info *gi)
+void	get_map_heigth(char *filename, t_cub *cub)
 {
 	int fd;
 	int gnl;
@@ -22,7 +22,7 @@ void	get_map_heigth(char *filename, t_game_info *gi)
 	heigth = 1;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		ft_error_no_free(errno, gi);
+		ft_error_no_free(errno, cub);
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
 		if (*line >= '0' && *line <= '2')
@@ -31,14 +31,14 @@ void	get_map_heigth(char *filename, t_game_info *gi)
 		if (!gnl)
 			break;
 	}
-	if(!(gi->map = malloc(sizeof(char *) * heigth)))
-		ft_error_free("malloc error\n", gi);
+	if(!(cub->map = malloc(sizeof(char *) * heigth)))
+		ft_error_free("malloc error\n", cub);
 	while(--heigth >= 0)
-		gi->map[heigth] = NULL;
+		cub->map[heigth] = NULL;
 	close(fd);
 }
 
-void	get_map(char *filename, t_game_info *gi)
+void	get_map(char *filename, t_cub *cub)
 {
 	int		fd;
 	int		gnl;
@@ -48,12 +48,12 @@ void	get_map(char *filename, t_game_info *gi)
 	n = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		ft_error_no_free(errno, gi);
+		ft_error_no_free(errno, cub);
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
 		if (*line >= '0' && *line <= '2')
 		{
-			create_line_map(line, gi, n);
+			create_line_map(line, cub, n);
 			n++;
 		}
 		free(line);
@@ -63,58 +63,58 @@ void	get_map(char *filename, t_game_info *gi)
 	close(fd);
 }
 
-void	valid_case_player_pos_check(t_game_info *gi)
+void	valid_case_player_pos_check(t_cub *cub)
 {
 	int i;
 	int j;
 
 	i = -1;
-	while(gi->map[++i])
+	while(cub->map[++i])
 	{
 		j = -1;
-		while(gi->map[i][++j])
+		while(cub->map[i][++j])
 		{
-			if (!is_valid_case(gi->map[i][j]))
+			if (!is_valid_case(cub->map[i][j]))
 			{
-				ft_emergency_split(gi->map);
-				ft_error_free("Map contains invalid value\n", gi);
+				ft_emergency_split(cub->map);
+				ft_error_free("Map contains invalid value\n", cub);
 			}
-			if(is_pos_case(gi->map[i][j]))
-				init_player_values(gi->map[i][j], gi, j, i);
+			if(is_pos_case(cub->map[i][j]))
+				init_player_values(cub->map[i][j], cub, j, i);
 		}
 	}
-	if (gi->player.angle == -1.0)
+	if (cub->angle == -1.0)
 	{
-		ft_emergency_split(gi->map);
-		ft_error_free("Map is missing player position\n", gi);
+		ft_emergency_split(cub->map);
+		ft_error_free("Map is missing player position\n", cub);
 	}
 }
 
-void	check_closed_map(t_game_info *gi)
+void	check_closed_map(t_cub *cub)
 {
 	int i;
 	int j;
 
 	i = -1;
-	while(gi->map[++i])
+	while(cub->map[++i])
 	{
 		j = -1;
-		while(gi->map[i][++j])
+		while(cub->map[i][++j])
 		{
-			if ((!check_left_right(gi, i, j)) || (!check_top_bottom(gi, i, j)))
+			if ((!check_left_right(cub, i, j)) || (!check_top_bottom(cub, i, j)))
 			{
-				ft_emergency_split(gi->map);
-				ft_error_free("Map isn't closed\n", gi);
+				ft_emergency_split(cub->map);
+				ft_error_free("Map isn't closed\n", cub);
 			}
 		}
 	}
 }
 
-void	parse_map(char *filename, t_game_info *gi)
+void	parse_map(char *filename, t_cub *cub)
 {
-	get_map_heigth(filename, gi);
-	get_map(filename, gi);
-	valid_case_player_pos_check(gi);
-	check_closed_map(gi);
+	get_map_heigth(filename, cub);
+	get_map(filename, cub);
+	valid_case_player_pos_check(cub);
+	check_closed_map(cub);
 }
 

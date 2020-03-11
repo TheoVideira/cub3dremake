@@ -6,11 +6,11 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:37:08 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/02 14:37:13 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 00:24:19 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "cub3d.h"
 
 void check_cub_file(char *filename)
 {
@@ -65,14 +65,14 @@ void check_map(char *filename, t_cub *cub)
 	check_map_2(filename);
 }
 
-void check_info(t_parse_info *pi, t_game_info *gi)
+void check_info(t_cub *cub)
 {
-	check_resolution(pi, gi);
-	check_f_color(pi, gi);
-	check_c_color(pi, gi);
-	check_no_tex(pi, gi);
-	check_so_tex(pi, gi);
-	check_ea_tex(pi, gi);
-	check_we_tex(pi, gi);
-	check_sp_tex(pi, gi);
+	check_resolution(cub);
+	check_f_color(cub);
+	check_c_color(cub);
+	check_no_tex(cub);
+	check_so_tex(cub);
+	check_ea_tex(cub);
+	check_we_tex(cub);
+	check_sp_tex(cub);
 }

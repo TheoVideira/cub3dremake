@@ -6,11 +6,11 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:22:04 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/05 23:58:07 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/11 00:59:43 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "cub3d.h"
 
 void parse_north(char *line, t_cub *cub)
 {
@@ -18,7 +18,7 @@ void parse_north(char *line, t_cub *cub)
     line += 2;
     while (ft_isspace(*line))
         line++;
-    cub->texture.path[0] = ft_strdup(line);
+    cub->path[0] = ft_strdup(line);
 }
 
 void parse_south(char *line, t_cub *cub)
@@ -27,7 +27,7 @@ void parse_south(char *line, t_cub *cub)
     line += 2;
     while (ft_isspace(*line))
         line++;
-    cub->texture.path[1] = ft_strdup(line);
+    cub->path[1] = ft_strdup(line);
 }
 
 void parse_east(char *line, t_cub *cub)
@@ -36,7 +36,7 @@ void parse_east(char *line, t_cub *cub)
     line += 2;
     while (ft_isspace(*line))
         line++;
-    cub->texture.path[2] = ft_strdup(line);
+    cub->path[2] = ft_strdup(line);
 }
 
 void parse_west(char *line, t_cub *cub)
@@ -45,7 +45,7 @@ void parse_west(char *line, t_cub *cub)
     line += 2;
     while (ft_isspace(*line))
         line++;
-    cub->texture.path[3] = ft_strdup(line);
+    cub->path[3] = ft_strdup(line);
 }
 
 void parse_sprite(char *line, t_cub *cub)
@@ -54,5 +54,5 @@ void parse_sprite(char *line, t_cub *cub)
     line++;
     while (ft_isspace(*line))
         line++;
-    cub->texture.path[4] = ft_strdup(line);
+    cub->path[4] = ft_strdup(line);
 }
