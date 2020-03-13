@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 05:26:26 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 12:34:53 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/13 07:19:10 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void init_player_vector(t_cub *cub)
 {
 	cub->dir_x = cos(cub->angle);
 	cub->dir_y = sin(cub->angle);
-	cub->plane_x = cub->dir_y;
-	cub->plane_y = -cub->dir_x;
+	cub->plane_x = -cub->dir_y;
+	cub->plane_y = cub->dir_x;
 }
 
 static void	create_background(t_cub *cub)
@@ -47,4 +47,6 @@ void		render(t_cub *cub)
 	create_background(cub);
 	init_player_vector(cub);
 	render_wall(cub);
+	mlx_put_image_to_window(cub->mlx_ptr, cub->window, cub->img, 0, 0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 09:59:12 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 05:36:40 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/13 05:46:30 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,20 +79,20 @@ void	movement_left_right_rotate(t_cub *cub)
 
 	y = (int)(cub->pos_y + cub->dir_x * MOVE_SPEED * 4.0);
 	x = (int)(cub->pos_x - cub->dir_y * MOVE_SPEED * 4.0);
-	if (cub->key_left && can_move(cub->map[y][x]))
+	if (cub->key_right && can_move(cub->map[y][x]))
 	{
 		cub->pos_x -= cub->dir_y * MOVE_SPEED;
 		cub->pos_y += cub->dir_x * MOVE_SPEED;
 	}
 	y = (int)(cub->pos_y - cub->dir_x * MOVE_SPEED * 4.0);
 	x = (int)(cub->pos_x + cub->dir_y * MOVE_SPEED * 4.0);
-	if (cub->key_right && can_move(cub->map[y][x]))
+	if (cub->key_left && can_move(cub->map[y][x]))
 	{
 		cub->pos_x += cub->dir_y * MOVE_SPEED;
 		cub->pos_y -= cub->dir_x * MOVE_SPEED;
 	}
-	cub->angle += (cub->key_rotate_left) ? ROTATE_SPEED : 0;
-	cub->angle -= (cub->key_rotate_right) ? ROTATE_SPEED : 0;
+	cub->angle -= (cub->key_rotate_left) ? ROTATE_SPEED : 0;
+	cub->angle += (cub->key_rotate_right) ? ROTATE_SPEED : 0;
 }
 
 

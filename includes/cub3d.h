@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 08:46:43 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 12:02:24 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/13 07:07:58 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,31 @@ typedef struct	s_cub
 	double		plane_y;
 }				t_cub;
 
+typedef struct	s_fileheader
+{
+	unsigned short int	id;
+	unsigned int		size;
+	unsigned int		reserved;
+	unsigned int		offset;
+}				t_fileheader;
+
+typedef struct	s_dibheader
+{
+	unsigned int		headersize;
+	unsigned int		width;
+	unsigned int		height;
+	unsigned short int	pane;
+	unsigned short int	bitcount;
+	unsigned char		offset[24];
+}				t_dibheader;
+
+typedef struct	s_frame_saver
+{
+	unsigned char	*buffer;
+	size_t			index;
+	size_t			size;
+}				t_frame_saver;
+
 void			init_cub(t_cub *cub);
 int				init_textures(t_cub *cub, int i);
 int				quit_window(t_cub *cub);
@@ -273,6 +298,10 @@ void			ft_error_no_free(int err, t_cub *cub);
 void			get_sprite(t_cub *cub);
 void			parse_args(int ac, char **av, t_cub *cub);
 void			render(t_cub *cub);
-
+int				write_fileheader(int fd, t_cub *cub);
+int				write_dibheader(int fd, t_cub *cub);
+int				write_pixeldata(int fd, t_cub *cub);
+int				write_bmp(t_cub *cub, char *filename);
+int				save_first_frame(t_cub *cub, char *filename);
 
 #endif

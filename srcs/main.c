@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 05:04:07 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 08:20:44 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/13 07:18:23 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int		loop_hook(t_cub *cub)
 {
 	render(cub);
-	mlx_put_image_to_window(cub->mlx_ptr, cub->window, cub->img, 0, 0);
 	return (0);
 }
 
@@ -44,6 +43,11 @@ int		main(int argc, char **argv)
 	if (!(cub.window = mlx_new_window(cub.mlx_ptr,
 		cub.width, cub.height, "cub3D")))
 		return (-1);
+	if (cub.bmp == 1)
+	{
+		render(&cub);
+		write_bmp(&cub, "save.bmp");
+	}
 	mlx_hook(cub.window, KEYPRESS, 0, key_press, &cub);
 	mlx_hook(cub.window, KEYRELEASE, 0, key_release, &cub);
 	mlx_hook(cub.window, DESTROYNOTIFY, 0, quit_window, &cub);

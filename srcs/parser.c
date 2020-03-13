@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:22:39 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 10:10:03 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/13 00:22:05 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		parse_cub_file(t_cub *cub, int ac, char **av)
 	return (0);
 }
 
-/*
+
 #include <stdio.h>
 
 int		test(int ac, char **av)
@@ -113,11 +113,10 @@ int		test(int ac, char **av)
 		printf("Sprite no %d, x = %d, y = %d\n", i, cub.sp_x[i], cub.sp_y[i]);
 	return (1);
 }
-
+/*
 int		main(int ac, char **av)
 {
 	printf("%d\n", (int)0.99999999);
 	test(ac, av);
 	return (0);
-}
-*/
+}*/

@@ -6,7 +6,7 @@
 /*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:13 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 08:32:43 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/03/13 06:07:35 by tvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	init_player_values(char c, t_cub *cub, int x, int y)
 		cub->angle = 0.0;
 	else
 		cub->angle = M_PI;
-	cub->pos_x = (double)x;
-	cub->pos_y = (double)y;
+	cub->pos_x = x + 0.5;
+	cub->pos_y = y + 0.5;
 }
 
 void	create_line_map(char *line, t_cub *cub, int n)
