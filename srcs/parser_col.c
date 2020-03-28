@@ -8,6 +8,7 @@ static int  check_end(char *line)
 		return (0);
 	return (1);
 }
+
 static int	check_line(char line, int *p)
 {
 	if (!line)

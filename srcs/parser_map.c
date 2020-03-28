@@ -11,30 +11,32 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
+
 
 void	get_map_heigth(char *filename, t_cub *cub)
 {
 	int fd;
 	int gnl;
 	char *line;
-	int heigth;
+	int height;
 
-	heigth = 1;
+	height = 1;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		ft_error_no_free(errno, cub);
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
-		if (*line >= '0' && *line <= '2')
-			heigth++;
+		if (*line == '1' || *line == ' ')
+			height++;
 		free(line);
 		if (!gnl)
 			break;
 	}
-	if(!(cub->map = malloc(sizeof(char *) * heigth)))
+	if(!(cub->map = malloc(sizeof(char *) * height)))
 		ft_error_free("malloc error\n", cub);
-	while(--heigth >= 0)
-		cub->map[heigth] = NULL;
+	while(--height >= 0)
+		cub->map[height] = NULL;
 	close(fd);
 }
 
@@ -51,7 +53,7 @@ void	get_map(char *filename, t_cub *cub)
 		ft_error_no_free(errno, cub);
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
-		if (*line >= '0' && *line <= '2')
+		if (*line == '1' || *line == ' ')
 		{
 			create_line_map(line, cub, n);
 			n++;
@@ -101,7 +103,7 @@ void	check_closed_map(t_cub *cub)
 		j = -1;
 		while(cub->map[i][++j])
 		{
-			if ((!check_left_right(cub, i, j)) || (!check_top_bottom(cub, i, j)))
+			if ((!check_case(cub, i, j)))
 			{
 				ft_emergency_split(cub->map);
 				ft_error_free("Map isn't closed\n", cub);
@@ -117,4 +119,3 @@ void	parse_map(char *filename, t_cub *cub)
 	valid_case_player_pos_check(cub);
 	check_closed_map(cub);
 }
-

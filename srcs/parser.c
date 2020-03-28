@@ -116,7 +116,7 @@ int		test(int ac, char **av)
 /*
 int		main(int ac, char **av)
 {
-	printf("%d\n", (int)0.99999999);
 	test(ac, av);
 	return (0);
-}*/
+}
+*/

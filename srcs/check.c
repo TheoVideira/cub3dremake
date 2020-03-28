@@ -41,7 +41,7 @@ void check_lines(char *filename)
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
 		n++;
-		if (*line && (!is_identifier(line) && (*line < '0' || *line > '2')))
+		if (*line && (!is_identifier(line) && (*line != '1' && *line != ' ')))
 		{
 			free(line);
 			close(fd);

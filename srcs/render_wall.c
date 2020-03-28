@@ -193,5 +193,4 @@ void	render_wall(t_cub *cub)
 			}
 		}
 	}
-	
 }

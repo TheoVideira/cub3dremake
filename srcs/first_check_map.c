@@ -31,12 +31,12 @@ void 		check_map_1(char *filename, t_cub *cub)
 		ft_error_no(errno);
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
-		if ((*line >= '0' && *line <= '2') && !inmap)
+		if ((*line == '1' || *line == ' ') && !inmap)
 		{
 			cub->no_map++;
 			inmap = 1;
 		}
-		if (!(*line >= '0' && *line <= '2'))
+		if (!(*line == '1' || *line == ' '))
 			inmap = 0;
 		free(line);
 		if (!gnl)
@@ -60,7 +60,7 @@ void check_map_2(char *filename)
 		ft_error_no(errno);
 	while ((gnl = get_next_line(fd, &line)) > -1 && (++n))
 	{
-		if ((*line == '0' || *line == '1'))
+		if ((*line == ' ' || *line == '1'))
 			found_map = 1;
 		if (is_identifier(line) && found_map)
 		{

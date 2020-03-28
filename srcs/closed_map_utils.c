@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int     check_left_right(t_cub *cub, int x, int y)
+static int	check_left_right(t_cub *cub, int x, int y)
 {
 	int n;
 	int l;
@@ -23,21 +23,21 @@ int     check_left_right(t_cub *cub, int x, int y)
 	n = y;
 	while (y >= 0)
 	{
-		if (cub->map[x][y] == '1')
+		if (cub->map[x][y] == '1' || cub->map[x][y] == ' ')
 			l = 1;
 		y--;
 	}
 	y = n;
 	while (cub->map[x][y])
 	{
-		if (cub->map[x][y] == '1')
+		if (cub->map[x][y] == '1' || cub->map[x][y] == ' ')
 			r = 1;
 		y++;
 	}
 	return (l && r);
 }
 
-int     check_top_bottom(t_cub *cub, int x, int y)
+static int	check_top_bottom(t_cub *cub, int x, int y)
 {
 	int n;
 	int b;
@@ -48,16 +48,54 @@ int     check_top_bottom(t_cub *cub, int x, int y)
 	n = x;
 	while (x >= 0 && y < (int)ft_strlen(cub->map[x]))
 	{
-		if (cub->map[x][y] == '1')
+		if (cub->map[x][y] == '1' || cub->map[x][y] == ' ')
 			t = 1;
 		x--;
 	}
 	x = n;
 	while (cub->map[x] && y < (int)ft_strlen(cub->map[x]))
 	{
-		if (cub->map[x][y] == '1')
+		if (cub->map[x][y] == '1' || cub->map[x][y] == ' ')
 			b = 1;
 		x++;
 	}
 	return (b && t);
+}
+
+static int	check_spaces(t_cub *cub, int x, int y)
+{
+	int t;
+	int b;
+	int r;
+	int l;
+
+	if (cub->map[x][y] != ' ')
+		return (1);
+	t = 0;
+	b = 0;
+	r = 0;
+	l = 0;
+	if (!y || cub->map[x][y - 1] == '1' || cub->map[x][y - 1] == ' ')
+			l = 1;
+	if (!x || cub->map[x - 1][y] == '1' || cub->map[x - 1][y] == ' ')
+			t = 1;
+	if (!cub->map[x][y + 1]
+		|| cub->map[x][y + 1] == '1' || cub->map[x][y + 1] == ' ')
+			r = 1;
+	if (!cub->map[x + 1]
+		|| cub->map[x + 1][y] == '1' || cub->map[x + 1][y] == ' ')
+			b = 1;
+	return (t && b && l && r);
+}
+
+int			check_case(t_cub *cub, int x, int y)
+{
+	int a;
+	int b;
+	int c;
+
+	a = check_top_bottom(cub, x, y);
+	b = check_left_right(cub, x, y);
+	c = check_spaces(cub, x, y);
+	return (a && b && c);
 }
