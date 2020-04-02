@@ -61,7 +61,7 @@ void get_info(char *filename, t_cub *cub)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		ft_error_no(errno);
+		ft_error_no(errno, cub);
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
 		if (is_identifier(line))
@@ -77,8 +77,8 @@ int		parse_cub_file(t_cub *cub, int ac, char **av)
 {
 	init_cub(cub);
 	parse_args(ac, av, cub);
-	check_cub_file(cub->cub_file_path);
-	check_lines(cub->cub_file_path);
+	check_cub_file(cub);
+	check_lines(cub);
 	check_map(cub->cub_file_path, cub);
 	get_info(cub->cub_file_path, cub);
 	check_info(cub);

@@ -49,6 +49,8 @@ char		**ft_emergency_split(char **s)
 {
 	int i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	while (s[i])
 		free(s[i++]);

@@ -24,7 +24,7 @@ void	get_map_heigth(char *filename, t_cub *cub)
 	height = 1;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		ft_error_no_free(errno, cub);
+		ft_error_no(errno, cub);
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
 		if (*line == '1' || *line == ' ')
@@ -34,7 +34,7 @@ void	get_map_heigth(char *filename, t_cub *cub)
 			break;
 	}
 	if(!(cub->map = malloc(sizeof(char *) * height)))
-		ft_error_free("malloc error\n", cub);
+		ft_error("malloc error\n", cub);
 	while(--height >= 0)
 		cub->map[height] = NULL;
 	close(fd);
@@ -50,7 +50,7 @@ void	get_map(char *filename, t_cub *cub)
 	n = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		ft_error_no_free(errno, cub);
+		ft_error_no(errno, cub);
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
 		if (*line == '1' || *line == ' ')
@@ -79,7 +79,7 @@ void	valid_case_player_pos_check(t_cub *cub)
 			if (!is_valid_case(cub->map[i][j]))
 			{
 				ft_emergency_split(cub->map);
-				ft_error_free("Map contains invalid value\n", cub);
+				ft_error("Map contains invalid value\n", cub);
 			}
 			if(is_pos_case(cub->map[i][j]))
 				init_player_values(cub->map[i][j], cub, j, i);
@@ -88,7 +88,7 @@ void	valid_case_player_pos_check(t_cub *cub)
 	if (cub->angle == -1.0)
 	{
 		ft_emergency_split(cub->map);
-		ft_error_free("Map is missing player position\n", cub);
+		ft_error("Map is missing player position\n", cub);
 	}
 }
 
@@ -106,7 +106,7 @@ void	check_closed_map(t_cub *cub)
 			if ((!check_case(cub, i, j)))
 			{
 				ft_emergency_split(cub->map);
-				ft_error_free("Map isn't closed\n", cub);
+				ft_error("Map isn't closed\n", cub);
 			}
 		}
 	}

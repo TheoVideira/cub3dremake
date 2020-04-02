@@ -33,19 +33,11 @@ static void	how_many_sprite(t_cub *cub)
 static void	init_sprite(t_cub *cub)
 {
 	if (!(cub->sp_x = malloc(sizeof(int) * cub->n_sp)))
-		ft_error("Malloc failed");
+		ft_error("Malloc failed", cub);
 	if (!(cub->sp_y = malloc(sizeof(int) * cub->n_sp)))
-	{
-		free(cub->sp_x);
-		ft_error("Malloc failed");
-	}
+		ft_error("Malloc failed", cub);
 	if (!(cub->sp_dist = malloc(sizeof(int) * cub->n_sp)))
-	{
-		free(cub->sp_x);
-		free(cub->sp_y);
-		ft_error("Malloc failed");
-	}
-
+		ft_error("Malloc failed", cub);
 }
 
 static void	pos_sprite(t_cub *cub)

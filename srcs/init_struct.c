@@ -17,6 +17,15 @@ void	init_cub(t_cub *cub)
 	init_parse_info(cub);
 	init_game_info(cub);
 	init_input(cub);
+	cub->mlx_ptr = NULL;
+	cub->window = NULL;
+	cub->screen = NULL;
+	cub->img = NULL;
+	cub->ptr[0] = NULL;
+	cub->ptr[1] = NULL;
+	cub->ptr[2] = NULL;
+	cub->ptr[3] = NULL;
+	cub->ptr[4] = NULL;
 }
 
 void	init_parse_info(t_cub *cub)
@@ -50,6 +59,11 @@ void	init_game_info(t_cub *cub)
 	cub->angle = -1.0;
 	cub->pos_x = -1.0;
 	cub->pos_y = -1.0;
+	cub->n_sp = 0;
+	cub->sp_x = NULL;
+	cub->sp_y = NULL;
+	cub->sp_dist = NULL;
+	cub->map = NULL;
 }
 
 void	init_input(t_cub *cub)

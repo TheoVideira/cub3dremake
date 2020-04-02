@@ -11,58 +11,59 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
-void		ft_error(char *error)
+void		ft_free_all(t_cub *cub)
+{
+	int i;
+
+	i = -1;
+	while(++i < 5)
+	{
+		free(cub->path[i]);
+		if (cub->mlx_ptr)
+			if (cub->ptr[i])
+				mlx_destroy_image(cub->mlx_ptr, cub->ptr[i]);
+	}
+	ft_emergency_split(cub->map);
+	free(cub->sp_x);
+	free(cub->sp_y);
+	free(cub->sp_dist);
+	if (cub->mlx_ptr)
+	{
+		if (cub->img)
+			mlx_destroy_image(cub->mlx_ptr, cub->img);
+		if (cub->window)
+			mlx_destroy_window(cub->mlx_ptr, cub->window);
+	}
+}
+
+void		ft_error(char *error, t_cub *cub)
 {
 	write(2, "Error\n", 6);
 	write(2, error, ft_strlen(error));
+	ft_free_all(cub);
 	exit(-1);
 }
 
-void	ft_error_free(char *error, t_cub *cub)
-{
-	write(2, "Error\n", 6);
-	write(2, error, ft_strlen(error));
-	free(cub->path[0]);
-	free(cub->path[1]);
-	free(cub->path[2]);
-	free(cub->path[3]);
-	free(cub->path[4]);
-	exit(-1);
-}
-
-
-void	ft_error_line(char *error, int n)
+void	ft_error_line(char *error, int n, t_cub *cub)
 {
 	write(2, "Error\n", 6);
 	write(2, "Line ", 5);
 	ft_putnbr_fd(n, 2);
 	write(2, ": ", 2);
 	write(2, error, ft_strlen(error));
+	ft_free_all(cub);
 	exit(-1);
 }
 
-void	ft_error_no(int err)
+void	ft_error_no(int err, t_cub *cub)
 {
 	char *error;
 
 	error = strerror(err);
 	write(2, error, ft_strlen(error));
 	write(2, "\n", 1);
-	exit(-1);
-}
-
-void	ft_error_no_free(int err, t_cub *cub)
-{
-	char *error;
-
-	error = strerror(err);
-	write(2, error, ft_strlen(error));
-	write(2, "\n", 1);
-	free(cub->path[0]);
-	free(cub->path[1]);
-	free(cub->path[2]);
-	free(cub->path[3]);
-	free(cub->path[4]);
+	ft_free_all(cub);
 	exit(-1);
 }

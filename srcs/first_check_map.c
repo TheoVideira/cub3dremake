@@ -28,7 +28,7 @@ void 		check_map_1(char *filename, t_cub *cub)
 	inmap = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		ft_error_no(errno);
+		ft_error_no(errno, cub);
 	while ((gnl = get_next_line(fd, &line)) > -1)
 	{
 		if ((*line == '1' || *line == ' ') && !inmap)
@@ -45,7 +45,7 @@ void 		check_map_1(char *filename, t_cub *cub)
 	close(fd);
 }
 
-void check_map_2(char *filename)
+void check_map_2(t_cub *cub)
 {
 	int		fd;
 	int		gnl;
@@ -55,9 +55,9 @@ void check_map_2(char *filename)
 
 	n = 0;
 	found_map = 0;
-	fd = open(filename, O_RDONLY);
+	fd = open(cub->cub_file_path, O_RDONLY);
 	if (fd < 0)
-		ft_error_no(errno);
+		ft_error_no(errno, cub);
 	while ((gnl = get_next_line(fd, &line)) > -1 && (++n))
 	{
 		if ((*line == ' ' || *line == '1'))
@@ -65,7 +65,7 @@ void check_map_2(char *filename)
 		if (is_identifier(line) && found_map)
 		{
 			ft_emergency(fd, &line);
-			ft_error_line("Map should be last elment of file", n);
+			ft_error_line("Map should be last elment of file", n, cub);
 		}
 		free(line);
 		if (!gnl)

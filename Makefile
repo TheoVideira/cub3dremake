@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 wsl: $(OBJS)
 	$(MAKE) -C libft
 	$(MAKE) -C gnl
-	$(CC) -g3 -fsanitize=address $(CFLAGS) $(OBJS) $(LIBRARIES) -o $(NAME) $(MLX_WSL_FLAGS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBRARIES) -o $(NAME) $(MLX_WSL_FLAGS)
 
 
 debug:
