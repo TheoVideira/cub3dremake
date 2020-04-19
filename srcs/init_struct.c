@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:48 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 01:19:14 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 18:40:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	init_cub(t_cub *cub)
 	init_parse_info(cub);
 	init_game_info(cub);
 	init_input(cub);
-	cub->mlx_ptr = NULL;
+	if (!(cub->mlx_ptr = mlx_init()))
+		ft_error("Error while init mlx", cub);
 	cub->window = NULL;
 	cub->screen = NULL;
 	cub->img = NULL;

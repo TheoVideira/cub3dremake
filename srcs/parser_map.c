@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:21 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 01:00:02 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:47:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
 
-
 void	get_map_heigth(char *filename, t_cub *cub)
 {
-	int fd;
-	int gnl;
-	char *line;
-	int height;
+	int		fd;
+	int		gnl;
+	char	*line;
+	int		height;
 
 	height = 1;
 	fd = open(filename, O_RDONLY);
@@ -31,11 +30,11 @@ void	get_map_heigth(char *filename, t_cub *cub)
 			height++;
 		free(line);
 		if (!gnl)
-			break;
+			break ;
 	}
-	if(!(cub->map = malloc(sizeof(char *) * height)))
+	if (!(cub->map = malloc(sizeof(char *) * height)))
 		ft_error("malloc error\n", cub);
-	while(--height >= 0)
+	while (--height >= 0)
 		cub->map[height] = NULL;
 	close(fd);
 }
@@ -60,7 +59,7 @@ void	get_map(char *filename, t_cub *cub)
 		}
 		free(line);
 		if (!gnl)
-			break;
+			break ;
 	}
 	close(fd);
 }
@@ -71,17 +70,17 @@ void	valid_case_player_pos_check(t_cub *cub)
 	int j;
 
 	i = -1;
-	while(cub->map[++i])
+	while (cub->map[++i])
 	{
 		j = -1;
-		while(cub->map[i][++j])
+		while (cub->map[i][++j])
 		{
 			if (!is_valid_case(cub->map[i][j]))
 			{
 				ft_emergency_split(cub->map);
 				ft_error("Map contains invalid value\n", cub);
 			}
-			if(is_pos_case(cub->map[i][j]))
+			if (is_pos_case(cub->map[i][j]))
 				init_player_values(cub->map[i][j], cub, j, i);
 		}
 	}
@@ -98,10 +97,10 @@ void	check_closed_map(t_cub *cub)
 	int j;
 
 	i = -1;
-	while(cub->map[++i])
+	while (cub->map[++i])
 	{
 		j = -1;
-		while(cub->map[i][++j])
+		while (cub->map[i][++j])
 		{
 			if ((!check_case(cub, i, j)))
 			{

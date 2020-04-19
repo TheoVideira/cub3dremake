@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 09:59:12 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/13 05:46:30 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:42:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 int		key_press(int key, t_cub *cub)
 {
+	//printf("KEY PRESSED = %d\n", key);
 	if (key == W_KEY)
 		cub->key_forward = 1;
 	if (key == S_KEY)
@@ -31,6 +33,7 @@ int		key_press(int key, t_cub *cub)
 
 int		key_release(int key, t_cub *cub)
 {
+	printf("KEY RELEASED = %d\n", key);
 	if (key == W_KEY)
 		cub->key_forward = 0;
 	if (key == S_KEY)
@@ -44,7 +47,9 @@ int		key_release(int key, t_cub *cub)
 	if (key == RIGHT_KEY)
 		cub->key_rotate_right = 0;
 	if (key == ESC_KEY)
+	{
 		quit_window(cub);
+	}
 	return (1);
 }
 
@@ -74,8 +79,8 @@ void	movement_forward_backward(t_cub *cub)
 
 void	movement_left_right_rotate(t_cub *cub)
 {
-	int			y;
-	int			x;
+	int y;
+	int x;
 
 	y = (int)(cub->pos_y + cub->dir_x * MOVE_SPEED * 4.0);
 	x = (int)(cub->pos_x - cub->dir_y * MOVE_SPEED * 4.0);
@@ -95,10 +100,10 @@ void	movement_left_right_rotate(t_cub *cub)
 	cub->angle += (cub->key_rotate_right) ? ROTATE_SPEED : 0;
 }
 
-
 int		quit_window(t_cub *cub)
 {
-	(void)(cub);
-	exit (0);
+	printf("?\n");
+	ft_free_all(cub);
+	exit(0);
 	return (0);
 }

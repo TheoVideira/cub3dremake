@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/17 11:20:00 by tvideira          #+#    #+#             */
+/*   Updated: 2020/04/19 17:23:18 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-    int i;
+	int i;
 
-    i = 0;
+	i = 0;
 	while (!ft_memcmp(s1 + i, s2 + i, 1) && *(s1 + i))
 		i += 1;
 	return (ft_memcmp(s1 + i, s2 + i, 1));

@@ -3,13 +3,13 @@
 F 255,255,0
 C 0,0,255
 
-R     640 480
+R 2080 1560
 
 NO textures/stone.xpm
 
 SO textures/gold_block.xpm
 
-EA bait.xpm
+EA textures/bee_nest_bottom.xpm
 
 WE textures/red_wool.xpm
 

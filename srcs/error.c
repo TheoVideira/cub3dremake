@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 11:20:00 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/12 22:51:23 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:36:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
 
-void		ft_free_all(t_cub *cub)
+void	ft_free_all(t_cub *cub)
 {
 	int i;
 
 	i = -1;
-	while(++i < 5)
+	while (++i < 5)
 	{
 		free(cub->path[i]);
 		if (cub->mlx_ptr)
@@ -38,7 +38,7 @@ void		ft_free_all(t_cub *cub)
 	}
 }
 
-void		ft_error(char *error, t_cub *cub)
+void	ft_error(char *error, t_cub *cub)
 {
 	write(2, "Error\n", 6);
 	write(2, error, ft_strlen(error));

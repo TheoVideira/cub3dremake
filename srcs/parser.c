@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:22:39 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/13 00:22:05 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 18:35:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	parse_line(char *str, t_cub *cub)
 		parse_west(str, cub);
 }
 
-void get_info(char *filename, t_cub *cub)
+void	get_info(char *filename, t_cub *cub)
 {
-	int fd;
-	int gnl;
-	char *line;
+	int		fd;
+	int		gnl;
+	char	*line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -68,13 +68,16 @@ void get_info(char *filename, t_cub *cub)
 			parse_line(line, cub);
 		free(line);
 		if (!gnl)
-			break;
+			break ;
 	}
 	close(fd);
 }
 
 int		parse_cub_file(t_cub *cub, int ac, char **av)
 {
+	int x;
+	int y;
+
 	init_cub(cub);
 	parse_args(ac, av, cub);
 	check_cub_file(cub);
@@ -84,10 +87,13 @@ int		parse_cub_file(t_cub *cub, int ac, char **av)
 	check_info(cub);
 	parse_map(cub->cub_file_path, cub);
 	get_sprite(cub);
+	mlx_get_screen_size(cub->mlx_ptr, &x, &y);
+	cub->width = (x < cub->width) ? x : cub->width;
+	cub->height = (y < cub->height) ? y : cub->height;
 	return (0);
 }
 
-
+/*
 #include <stdio.h>
 
 int		test(int ac, char **av)
@@ -113,7 +119,7 @@ int		test(int ac, char **av)
 		printf("Sprite no %d, x = %d, y = %d\n", i, cub.sp_x[i], cub.sp_y[i]);
 	return (1);
 }
-/*
+
 int		main(int ac, char **av)
 {
 	test(ac, av);

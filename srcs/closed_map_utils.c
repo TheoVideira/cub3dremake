@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closed_map_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 17:51:45 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 00:50:42 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:34:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,15 @@ static int	check_spaces(t_cub *cub, int x, int y)
 	r = 0;
 	l = 0;
 	if (!y || cub->map[x][y - 1] == '1' || cub->map[x][y - 1] == ' ')
-			l = 1;
+		l = 1;
 	if (!x || cub->map[x - 1][y] == '1' || cub->map[x - 1][y] == ' ')
-			t = 1;
+		t = 1;
 	if (!cub->map[x][y + 1]
 		|| cub->map[x][y + 1] == '1' || cub->map[x][y + 1] == ' ')
-			r = 1;
+		r = 1;
 	if (!cub->map[x + 1]
 		|| cub->map[x + 1][y] == '1' || cub->map[x + 1][y] == ' ')
-			b = 1;
+		b = 1;
 	return (t && b && l && r);
 }
 

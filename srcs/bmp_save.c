@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bmp_save.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 07:05:09 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/13 07:20:46 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 18:08:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,14 @@ int		write_bmp(t_cub *cub, char *filename)
 
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
-		return (-1);
+		ft_error("Error while saving screenshot\n", cub);
 	if (write_fileheader(fd, cub) == -1)
-		return (-1);
+		ft_error("Error while saving screenshot\n", cub);
 	if (write_dibheader(fd, cub) == -1)
-		return (-1);
+		ft_error("Error while saving screenshot\n", cub);
 	if (write_pixeldata(fd, cub) == -1)
-		return (-1);
+		ft_error("Error while saving screenshot\n", cub);
+	ft_free_all(cub);
 	exit(0);
-    return (0);
+	return (0);
 }

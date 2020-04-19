@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:37:08 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 00:24:19 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:28:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void check_cub_file(t_cub *cub)
+void	check_cub_file(t_cub *cub)
 {
 	int fd;
 
@@ -27,12 +27,12 @@ void check_cub_file(t_cub *cub)
 	close(fd);
 }
 
-void check_lines(t_cub *cub)
+void	check_lines(t_cub *cub)
 {
-	int fd;
-	int gnl;
-	int n;
-	char *line;
+	int		fd;
+	int		gnl;
+	int		n;
+	char	*line;
 
 	fd = open(cub->cub_file_path, O_RDONLY);
 	if (fd < 0)
@@ -45,16 +45,16 @@ void check_lines(t_cub *cub)
 		{
 			free(line);
 			close(fd);
-			ft_error_line("Not empty line that isn't recognized\n", n, cub);			
+			ft_error_line("Not empty line that isn't recognized\n", n, cub);
 		}
 		free(line);
 		if (!gnl)
-			break;
+			break ;
 	}
 	close(fd);
 }
 
-void check_map(char *filename, t_cub *cub)
+void	check_map(char *filename, t_cub *cub)
 {
 	check_map_1(filename, cub);
 	if (cub->no_map == 0)
@@ -65,7 +65,7 @@ void check_map(char *filename, t_cub *cub)
 	check_map_2(cub);
 }
 
-void check_info(t_cub *cub)
+void	check_info(t_cub *cub)
 {
 	check_resolution(cub);
 	check_f_color(cub);

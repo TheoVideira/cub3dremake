@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_res.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:33 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/11 01:19:14 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:48:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		parse_res(char *line, t_cub *cub)
 {
 	cub->r++;
 	line++;
-	while(ft_isspace(*line))
+	while (ft_isspace(*line))
 		line++;
 	if (!check_line(*line, &(cub->width)))
 		return ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_check_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:57 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/02 14:36:58 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:38:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_emergency(int fd, char **line)
 	close(fd);
 }
 
-void 		check_map_1(char *filename, t_cub *cub)
+void		check_map_1(char *filename, t_cub *cub)
 {
 	int		fd;
 	int		gnl;
@@ -40,12 +40,12 @@ void 		check_map_1(char *filename, t_cub *cub)
 			inmap = 0;
 		free(line);
 		if (!gnl)
-			break;
+			break ;
 	}
 	close(fd);
 }
 
-void check_map_2(t_cub *cub)
+void		check_map_2(t_cub *cub)
 {
 	int		fd;
 	int		gnl;
@@ -69,7 +69,7 @@ void check_map_2(t_cub *cub)
 		}
 		free(line);
 		if (!gnl)
-			break;
+			break ;
 	}
 	close(fd);
 }

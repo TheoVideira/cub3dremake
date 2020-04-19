@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 05:26:26 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/13 07:19:10 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:51:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void		render(t_cub *cub)
 	render_wall(cub);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->window, cub->img, 0, 0);
 }
-

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_col.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/19 17:43:50 by marvin            #+#    #+#             */
+/*   Updated: 2020/04/19 17:44:47 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static int  check_end(char *line)
+static int	check_end(char *line)
 {
 	while (ft_isdigit(*line))
 		line++;
@@ -40,7 +52,7 @@ void		parse_f_color(char *line, t_cub *cub)
 	i = 0;
 	cub->f++;
 	line++;
-	while(ft_isspace(*line))
+	while (ft_isspace(*line))
 		line++;
 	if (!check_line(*line, &(cub->f_color[0])))
 		return ;
@@ -69,7 +81,7 @@ void		parse_c_color(char *line, t_cub *cub)
 	i = 0;
 	cub->c++;
 	line++;
-	while(ft_isspace(*line))
+	while (ft_isspace(*line))
 		line++;
 	if (!check_line(*line, &(cub->c_color[0])))
 		return ;
