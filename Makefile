@@ -6,7 +6,7 @@ MLX_WSL_FLAGS	= -L/usr/local/lib -lmlx -lm -lXext -lX11 -lpthread -lxcb -lXau -l
 LIBRARIES		= libft/libft.a gnl/gnl.a
 INCLUDES_FOLDER	= gnl includes libft
 INCLUDES		= $(addprefix -I, $(INCLUDES_FOLDER))
-INCLUDES_FILES	= libft/libft.h gnl/get_next_line.h includes/cub3D.h
+INCLUDES_FILES	= libft/libft.h gnl/get_next_line.h includes/cub3d.h
 
 NAME			= cub3D
 
