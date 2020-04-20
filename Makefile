@@ -6,13 +6,14 @@ MLX_WSL_FLAGS	= -L/usr/local/lib -lmlx -lm -lXext -lX11 -lpthread -lxcb -lXau -l
 LIBRARIES		= libft/libft.a gnl/gnl.a
 INCLUDES_FOLDER	= gnl includes libft
 INCLUDES		= $(addprefix -I, $(INCLUDES_FOLDER))
+INCLUDES_FILES	= libft/libft.h gnl/get_next_line.h includes/cub3D.h
 
 NAME			= cub3D
 
 SRCS_DIR		= srcs
 SRCS_FILES		= check.c check_texture.c error.c get_map_utils.c init_struct.c key.c parser.c parser_col.c parser_res.c render.c \
 				  check_info.c closed_map_utils.c first_check_map.c get_sprite.c init_texture.c main.c parser_args.c parser_map.c \
-				  parser_tex.c render_wall.c bmp_save.c
+				  parser_tex.c render_wall.c render_wall_bis.c render_sprite.c render_sprite_bis.c bmp_save.c
 SRCS			= $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS_DIR		= objs
@@ -21,22 +22,22 @@ OBJS			= $(addprefix $(OBJS_DIR)/, $(OBJS_FILES))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(MAKE) -C libft
-	$(MAKE) -C gnl
+$(NAME): $(OBJS) $(LIBRARIES) $(INCLUDES_FILES)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBRARIES) $(MLX_WSL_FLAGS) -o $(NAME)
+
+mac: $(OBJS) $(LIBRARIES) $(INCLUDES_FILES)
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(LIBRARIES) -o $(NAME)
 
-wsl: $(OBJS)
+
+$(LIBRARIES):
 	$(MAKE) -C libft
 	$(MAKE) -C gnl
-	$(CC) $(CFLAGS) $(OBJS) $(LIBRARIES) -o $(NAME) $(MLX_WSL_FLAGS)
-
 
 debug:
-	$(CC) $(CFLAGS) -g3 -fsanitize=address $(MLX_FLAGS) $(OBJS) $(LIBRARIES) -o $(NAME)
-
-debug_wsl:
 	$(CC) $(CFLAGS) -g3 -fsanitize=address $(OBJS) $(LIBRARIES) -o $(NAME) $(MLX_WSL_FLAGS)
+
+debug_mac:
+	$(CC) $(CFLAGS) -g3 -fsanitize=address $(MLX_FLAGS) $(OBJS) $(LIBRARIES) -o $(NAME)
 
 #Create .o folder
 $(OBJS_DIR):
@@ -56,9 +57,6 @@ fclean: clean
 	$(MAKE) -C libft fclean
 	$(MAKE) -C gnl fclean
 	rm -f $(NAME)
-
-testparser:
-	$(CC) $(CFLAGS) srcs/parser*.c srcs/*check*.c srcs/error.c srcs/init_struct.c srcs/get_map_utils.c srcs/closed_map_utils.c srcs/get_sprite.c $(LIBRARIES)
 
 re: fclean all
 

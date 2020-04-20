@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:13 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/19 17:38:52 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/20 03:36:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	init_player_values(char c, t_cub *cub, int x, int y)
 		ft_emergency_split(cub->map);
 		ft_error("Map error : Player position should appear once\n", cub);
 	}
-	if (c == 'N')
+	if (c == 'S')
 		cub->angle = M_PI / 2.0;
-	else if (c == 'S')
+	else if (c == 'N')
 		cub->angle = 3.0 * M_PI / 2.0;
 	else if (c == 'E')
 		cub->angle = 0.0;

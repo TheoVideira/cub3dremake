@@ -6,12 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 11:20:00 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/19 17:36:44 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/20 03:05:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
 
 void	ft_free_all(t_cub *cub)
 {

@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 05:26:26 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/19 17:51:45 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/20 03:01:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void init_player_vector(t_cub *cub)
+static void	init_player_vector(t_cub *cub)
 {
 	cub->dir_x = cos(cub->angle);
 	cub->dir_y = sin(cub->angle);
@@ -43,9 +43,12 @@ static void	create_background(t_cub *cub)
 
 void		render(t_cub *cub)
 {
+	double	z_buffer[cub->width];
+
 	movement_forward_backward(cub);
 	create_background(cub);
 	init_player_vector(cub);
-	render_wall(cub);
+	render_wall(cub, z_buffer);
+	render_sprite(cub, z_buffer);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->window, cub->img, 0, 0);
 }

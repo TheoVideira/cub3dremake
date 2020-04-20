@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvideira <tvideira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 08:46:43 by tvideira          #+#    #+#             */
-/*   Updated: 2020/03/13 07:07:58 by tvideira         ###   ########.fr       */
+/*   Updated: 2020/04/20 03:32:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,9 +209,41 @@ typedef struct	s_cub
 	int			f;
 	int			c;
 	int			no_map;
-
 	double		plane_x;
 	double		plane_y;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist;
+	double		wall_x;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			tex_id;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			tex_x;
+	double		step;
+	double		tex_pos;
+	double		sprite_x;
+	double		sprite_y;
+	double		inv_det;
+	double		transform_x;
+	double		transform_y;
+	int			sprite_screen_x;
+	int			sprite_height;
+	int			sprite_width;
+	int			draw_start_y;
+	int			draw_start_x;
+	int			draw_end_y;
+	int			draw_end_x;
 }				t_cub;
 
 typedef struct	s_fileheader
@@ -247,7 +279,7 @@ int				key_press(int key, t_cub *cub);
 int				key_release(int key, t_cub *cub);
 void			movement_forward_backward(t_cub *cub);
 void			movement_left_right_rotate(t_cub *cub);
-void			render_wall(t_cub *cub);
+void			render_wall(t_cub *cub, double *z_buffer);
 void			get_resolution(t_cub *cub);
 void			get_ceil(t_cub *cub);
 void			get_floor(t_cub *cub);
@@ -301,5 +333,11 @@ int				write_pixeldata(int fd, t_cub *cub);
 int				write_bmp(t_cub *cub, char *filename);
 int				save_first_frame(t_cub *cub, char *filename);
 void			ft_free_all(t_cub *cub);
+void			render_wall_4(t_cub *cub);
+void			render_wall_5(t_cub *cub);
+void			render_wall_6(t_cub *cub, int x);
+void			render_sprite(t_cub *cub, double *zbuffer);
+void			render_sprite_1(t_cub *cub, int i);
+void			render_sprite_2(t_cub *cub, int s, double *z_buffer);
 
 #endif

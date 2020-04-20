@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:22:39 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/19 18:35:13 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/20 03:00:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,37 +92,3 @@ int		parse_cub_file(t_cub *cub, int ac, char **av)
 	cub->height = (y < cub->height) ? y : cub->height;
 	return (0);
 }
-
-/*
-#include <stdio.h>
-
-int		test(int ac, char **av)
-{
-	t_cub cub;
-
-	parse_cub_file(&cub, ac, av);
-	printf("resolution = %d, %d\n", cub.width, cub.height);
-	printf("ceil = r[%d], g[%d], b[%d]\n", cub.c_color[0], cub.c_color[1], cub.c_color[2]);
-	printf("floor = r[%d], g[%d], b[%d]\n", cub.f_color[0], cub.f_color[1], cub.f_color[2]);
-	printf("path[0] = %s\n", cub.path[0]);
-	printf("path[1] = %s\n", cub.path[1]);
-	printf("path[2] = %s\n", cub.path[2]);
-	printf("path[3] = %s\n", cub.path[3]);
-	printf("path[4] = %s\n", cub.path[4]);
-	printf("\nMap :\n");
-	for (int i = 0; cub.map[i]; i++)
-		printf("%s\n", cub.map[i]);
-	printf("\nPlayer angle = %f\n", cub.angle);
-	printf("Player pos x = %f\n", cub.pos_x);
-	printf("Player pos y = %f\n", cub.pos_y);
-	for (int i = 0; i < cub.n_sp; i++)
-		printf("Sprite no %d, x = %d, y = %d\n", i, cub.sp_x[i], cub.sp_y[i]);
-	return (1);
-}
-
-int		main(int ac, char **av)
-{
-	test(ac, av);
-	return (0);
-}
-*/

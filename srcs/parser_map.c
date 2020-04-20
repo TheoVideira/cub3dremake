@@ -6,12 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:21 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/19 17:47:29 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/20 03:04:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
 
 void	get_map_heigth(char *filename, t_cub *cub)
 {

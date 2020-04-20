@@ -6,16 +6,14 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 09:59:12 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/19 17:42:36 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/20 03:05:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
 
 int		key_press(int key, t_cub *cub)
 {
-	//printf("KEY PRESSED = %d\n", key);
 	if (key == W_KEY)
 		cub->key_forward = 1;
 	if (key == S_KEY)
@@ -33,7 +31,6 @@ int		key_press(int key, t_cub *cub)
 
 int		key_release(int key, t_cub *cub)
 {
-	printf("KEY RELEASED = %d\n", key);
 	if (key == W_KEY)
 		cub->key_forward = 0;
 	if (key == S_KEY)
@@ -102,7 +99,6 @@ void	movement_left_right_rotate(t_cub *cub)
 
 int		quit_window(t_cub *cub)
 {
-	printf("?\n");
 	ft_free_all(cub);
 	exit(0);
 	return (0);
