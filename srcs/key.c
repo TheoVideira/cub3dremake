@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 09:59:12 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/20 03:05:53 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/22 01:48:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int		key_release(int key, t_cub *cub)
 
 void	movement_forward_backward(t_cub *cub)
 {
-	int			y;
-	int			x;
+	int y;
+	int x;
 
 	if (cub->key_forward)
 	{
