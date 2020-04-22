@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 11:20:00 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/20 03:05:54 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/22 03:37:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_free_all(t_cub *cub)
 			mlx_destroy_image(cub->mlx_ptr, cub->img);
 		if (cub->window)
 			mlx_destroy_window(cub->mlx_ptr, cub->window);
+		free(cub->mlx_ptr);
 	}
 }
 
