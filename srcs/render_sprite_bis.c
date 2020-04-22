@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 02:37:49 by marvin            #+#    #+#             */
-/*   Updated: 2020/04/22 04:18:09 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/22 20:21:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render_sprite_1(t_cub *cub, int i)
 	cub->draw_end_y = cub->sprite_height / 2 + cub->height / 2;
 	if (cub->draw_end_y >= cub->height)
 		cub->draw_end_y = cub->height - 1;
-	cub->sprite_width = abs((int)(cub->height / cub->transform_y));
+	cub->sprite_width = abs((cub->height / cub->transform_y));
 	cub->draw_start_x = -cub->sprite_width / 2 + cub->sprite_screen_x;
 	if (cub->draw_start_x < 0)
 		cub->draw_start_x = 0;
@@ -48,16 +48,17 @@ void	render_sprite_2(t_cub *cub, int s, double *z_buffer)
 	int pix_screen;
 	int pix_tex;
 
-	cub->tex_x = (int)(256 * (s - (-cub->sprite_width / 2 +
-		cub->sprite_screen_x)) * cub->tex_w[4] / cub->sprite_width) / 256;
+	cub->tex_x = (int)((s - (-cub->sprite_width / 2 +
+		cub->sprite_screen_x)) * cub->tex_w[4] / cub->sprite_width);
 	if (cub->transform_y > 0 && s > 0 && s < cub->width &&
 		cub->transform_y < z_buffer[s])
 	{
 		t = cub->draw_start_y - 1;
 		while (++t < cub->draw_end_y)
 		{
-			d = t * 256 - cub->height * 128 + cub->sprite_height * 128;
-			tex_y = ((d * cub->tex_h[4]) / cub->sprite_height) / 256;
+			d = t * 2 - cub->height + cub->sprite_height;
+			d = (d < 0) ? 0 : d;
+			tex_y = ((d * cub->tex_h[4]) / cub->sprite_height) / 2;
 			pix_screen = t * cub->width + s;
 			pix_tex = cub->tex_w[4] * tex_y + cub->tex_x;
 			if (!(!(cub->data[4][pix_tex] & 0x00FFFFFF)))

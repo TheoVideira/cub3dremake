@@ -6,12 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:13 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/22 04:31:34 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/22 18:35:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
 
 int		is_valid_case(char c)
 {
