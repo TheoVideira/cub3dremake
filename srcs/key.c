@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 09:59:12 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/22 01:48:06 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/22 04:42:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,12 @@ void	movement_forward_backward(t_cub *cub)
 	int y;
 	int x;
 
-	if (cub->key_forward)
+	y = (int)(cub->pos_y + cub->dir_y * MOVE_SPEED * 4.0);
+	x = (int)(cub->pos_x + cub->dir_x * MOVE_SPEED * 4.0);
+	if (cub->key_forward && can_move(cub->map[y][x]))
 	{
-		x = (int)(cub->pos_x + cub->dir_x * MOVE_SPEED * 4.0);
-		if (can_move(cub->map[(int)cub->pos_y][x]))
-			cub->pos_x += cub->dir_x * MOVE_SPEED;
-		y = (int)(cub->pos_y + cub->dir_y * MOVE_SPEED * 4.0);
-		if (can_move(cub->map[y][(int)floor(cub->pos_x)]))
-			cub->pos_y += cub->dir_y * MOVE_SPEED;
+		cub->pos_x += cub->dir_x * MOVE_SPEED;
+		cub->pos_y += cub->dir_y * MOVE_SPEED;
 	}
 	y = (int)(cub->pos_y - cub->dir_y * MOVE_SPEED * 4.0);
 	x = (int)(cub->pos_x - cub->dir_x * MOVE_SPEED * 4.0);
