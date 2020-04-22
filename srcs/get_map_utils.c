@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:13 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/20 03:36:51 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/22 04:31:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int		can_move(char c)
 void	init_player_values(char c, t_cub *cub, int x, int y)
 {
 	if (cub->angle != -1.0)
-	{
-		ft_emergency_split(cub->map);
 		ft_error("Map error : Player position should appear once\n", cub);
-	}
 	if (c == 'S')
 		cub->angle = M_PI / 2.0;
 	else if (c == 'N')
@@ -54,9 +51,6 @@ void	create_line_map(char *line, t_cub *cub, int n)
 
 	len = ft_strlen(line);
 	if (!(cub->map[n] = ft_calloc(1, sizeof(char) * len + 1)))
-	{
-		ft_emergency_split(cub->map);
 		ft_error("error during calloc\n", cub);
-	}
 	ft_strlcpy(cub->map[n], line, len + 1);
 }

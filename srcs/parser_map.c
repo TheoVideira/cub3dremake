@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:21 by tvideira          #+#    #+#             */
-/*   Updated: 2020/04/20 03:04:46 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/22 04:31:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,13 @@ void	valid_case_player_pos_check(t_cub *cub)
 		while (cub->map[i][++j])
 		{
 			if (!is_valid_case(cub->map[i][j]))
-			{
-				ft_emergency_split(cub->map);
 				ft_error("Map contains invalid value\n", cub);
-			}
 			if (is_pos_case(cub->map[i][j]))
 				init_player_values(cub->map[i][j], cub, j, i);
 		}
 	}
 	if (cub->angle == -1.0)
-	{
-		ft_emergency_split(cub->map);
 		ft_error("Map is missing player position\n", cub);
-	}
 }
 
 void	check_closed_map(t_cub *cub)
@@ -102,10 +96,7 @@ void	check_closed_map(t_cub *cub)
 		while (cub->map[i][++j])
 		{
 			if ((!check_case(cub, i, j)))
-			{
-				ft_emergency_split(cub->map);
 				ft_error("Map isn't closed\n", cub);
-			}
 		}
 	}
 }

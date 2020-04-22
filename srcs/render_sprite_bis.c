@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 02:37:49 by marvin            #+#    #+#             */
-/*   Updated: 2020/04/22 01:45:37 by marvin           ###   ########.fr       */
+/*   Updated: 2020/04/22 04:18:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	render_sprite_2(t_cub *cub, int s, double *z_buffer)
 		while (++t < cub->draw_end_y)
 		{
 			d = t * 256 - cub->height * 128 + cub->sprite_height * 128;
-			d = (d < 0) ? 0 : d;
 			tex_y = ((d * cub->tex_h[4]) / cub->sprite_height) / 256;
 			pix_screen = t * cub->width + s;
 			pix_tex = cub->tex_w[4] * tex_y + cub->tex_x;
